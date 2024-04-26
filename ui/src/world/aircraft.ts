@@ -29,8 +29,8 @@ export const createAircraftLayer = (
 ) => {
   const { state, onClick } = properties;
 
-  const size = 1 / 1000;
-  const minSizePixels = 15 / 1000;
+  const size = 1;
+  const minSizePixels = 24;
 
   let aircraftMesh: Mesh | undefined;
   let aircraftOutlineMesh: Mesh | undefined;
@@ -45,9 +45,9 @@ export const createAircraftLayer = (
     const [pitch = 0, yaw = 0, roll = 0] = _orientation();
     return quat.fromEuler(
       quat.create(),
-      -degrees(pitch + Math.PI / 2),
-      degrees(roll + Math.PI),
-      degrees(yaw),
+      -degrees(pitch) + 90,
+      degrees(roll),
+      degrees(yaw) - 90,
     );
   };
   const color = () => [0.5, 0.5, 0.5, 1] satisfies vec4;
