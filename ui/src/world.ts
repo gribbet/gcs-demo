@@ -45,7 +45,7 @@ export const createWorld = (
 
   const followView = createFollowView({
     enabled: () => following,
-    position: () => state()?.position,
+    position: () => state().position,
     distance: () => _view.distance,
   });
 

@@ -1,6 +1,9 @@
 /// <reference types="vite/client" />
 
 import App from "./components/App.svelte";
+import { endpoint } from "./configuration";
+
+console.log("Endpoint", endpoint);
 
 window.addEventListener("load", () =>
   navigator.serviceWorker.register(

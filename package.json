@@ -2,6 +2,7 @@
   "name": "aevex-demo",
   "workspaces": [
     "eslint-config",
+    "infrastructure",
     "ui"
   ],
   "scripts": {
