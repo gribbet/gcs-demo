@@ -1,6 +1,7 @@
 import { svelte, vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { defineConfig } from "vite";
 import environment from "vite-plugin-environment";
+import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 export default defineConfig({
   root: "src",
@@ -10,6 +11,9 @@ export default defineConfig({
     }),
     svelte({
       preprocess: vitePreprocess(),
+    }),
+    nodePolyfills({
+      exclude: ["crypto"],
     }),
   ],
   build: {

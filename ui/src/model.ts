@@ -12,4 +12,5 @@ export type State = {
 export type Aircraft = {
   state: State;
   flyTo: (position: Position) => void;
+  destroy: () => void;
 };
