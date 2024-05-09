@@ -1,5 +1,5 @@
 {
-  "name": "aevex-demo",
+  "name": "gcs-demo",
   "workspaces": [
     "eslint-config",
     "infrastructure",
