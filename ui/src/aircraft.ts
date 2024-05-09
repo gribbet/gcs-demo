@@ -1,4 +1,4 @@
-import { common } from "node-mavlink";
+import { common, minimal } from "node-mavlink";
 
 import type { Mavlink } from "./mavlink";
 import type { Aircraft, Position, State } from "./model";
@@ -10,7 +10,7 @@ export const createAircraft = (mavlink: Mavlink) => {
     orientation: [0, 0, 0],
   };
 
-  const destroy = mavlink.read(message => {
+  const unsubscribe = mavlink.read(message => {
     state.time = Date.now();
     if (message instanceof common.GlobalPositionInt) {
       const latitude = message.lat / 1e7;
@@ -22,6 +22,22 @@ export const createAircraft = (mavlink: Mavlink) => {
       state.orientation = [pitch, yaw, roll];
     }
   });
+
+  const heartbeat = async () => {
+    const message = new minimal.Heartbeat();
+    message.type = minimal.MavType.GCS;
+    message.autopilot = minimal.MavAutopilot.INVALID;
+    message.systemStatus = minimal.MavState.ACTIVE;
+
+    await mavlink.write(message);
+  };
+
+  const interval = setInterval(heartbeat, 1000);
+
+  const destroy = () => {
+    clearInterval(interval);
+    unsubscribe();
+  };
 
   return {
     get state() {
