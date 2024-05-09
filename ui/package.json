@@ -23,6 +23,6 @@
   "dependencies": {
     "node-mavlink": "^2.0.7",
     "obj-file-parser": "^0.6.2",
-    "world.ts": "^0.3.13"
+    "world.ts": "^0.3.14"
   }
 }
